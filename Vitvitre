@@ -1,0 +1,110 @@
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+})
+
+// package.json (extrait)
+{
+  "name": "vitvitre",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^5.0.0"
+  }
+}
+
+// src/main.jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+
+// src/App.jsx
+import React from 'react'
+import HomePage from './HomePage'
+
+function App() {
+  return <HomePage />
+}
+
+export default App
+
+// src/HomePage.jsx
+import React from 'react'
+import './index.css'
+
+function HomePage() {
+  return (
+    <div className="app">
+      <header>
+        <h1>Vit'Vitre</h1>
+        <nav>
+          <a href="/mentions-legales.html">Mentions légales</a>
+          <a href="/cgv.html">CGV</a>
+          <a href="/politique-cookies.html">Cookies</a>
+          <a href="/contrat-prestation.html">Contrat</a>
+        </nav>
+      </header>
+      <main>
+        <h2>Nettoyage de vitres à Mulhouse</h2>
+        <p>Micro-entreprise sans TVA – Devis estimé après étude de votre demande.</p>
+        <form action="mailto:contact@vitvitre.fr" method="post" encType="text/plain">
+          <input type="text" name="Nom" placeholder="Votre nom" required />
+          <input type="email" name="Email" placeholder="Votre email" required />
+          <textarea name="Message" placeholder="Votre message" required></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+      </main>
+      <footer>
+        <p>&copy; 2025 Vit'Vitre - Mulhouse</p>
+      </footer>
+    </div>
+  )
+}
+
+export default HomePage
+
+// src/index.css
+body { margin: 0; font-family: sans-serif; background: #f9f9f9; }
+header, footer { background: #eee; padding: 1rem; text-align: center; }
+nav a { margin: 0 1rem; text-decoration: none; color: #333; }
+form { display: flex; flex-direction: column; gap: 0.5rem; max-width: 400px; margin: auto; padding: 1rem; }
+input, textarea, button { padding: 0.5rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; }
+button { background: #007bff; color: white; border: none; cursor: pointer; }
+button:hover { background: #0056b3; }
+
+// public/mentions-legales.html
+<h1>Mentions légales</h1><p>Vit'Vitre - Hazzab Mouhammed - 30 boulevard de l'Europe, 68100 Mulhouse</p>
+
+// public/cgv.html
+<h1>Conditions Générales de Vente</h1><p>Devis estimatif. Paiement à réception. Pas de TVA. Retard > 30j = pénalités.</p>
+
+// public/politique-cookies.html
+<h1>Politique de Cookies</h1><p>Ce site n'utilise que des cookies strictement nécessaires au bon fonctionnement.</p>
+
+// public/contrat-prestation.html
+<h1>Contrat de prestation</h1><p>Contrat type remis à chaque client avec les conditions précises convenues.</p>
